@@ -39,6 +39,8 @@ def init_routes(app):
                 'Increase in Consumption': value_increase
             })
         results_consumption_df = pd.DataFrame(results_consumption)
-        return loads(results_consumption_df.to_json(orient="records"))
+        results_consumption_df_json = loads(results_consumption_df.to_json(orient="records"))
+        #return loads(results_consumption_df.to_json(orient="records"))
+        return results_consumption_df_json
     
 init_routes(app)

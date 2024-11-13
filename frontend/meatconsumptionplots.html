@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <h1>Increase in meat consumption plots</h1>
+        <a href="index.html">Home</a>
+        <a href="meatconsumption.html">Meat consumption increase</a>
+        <a href="meatconsumptionplots.html">Meat consumption plots</a>
+    </head>
+    
+    <body>
+        <p>Here you can find some plots on meat consumption.</p>
+    <script>
+        function showplots(){
+            fetch("http://127.0.0.1:5000/change_in_meat_consumption")
+            .then(r => r.json())
+            .then(d => populateHTML(d))
+        }
+
+        function populateHTML(json){
+            increase = document.getElementById("increase");
+            console.log(json);
+            increase.innerHTML = String(json["LOCATION"]);
+        }
+
+    </script>
+
+    <button onclick="showplots()">Show plots</button>
+    <div id="increase"></div>
+    <div id="plotstoshow"></div>
+
+    </body>
+
+</html>
