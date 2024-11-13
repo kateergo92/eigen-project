@@ -1,0 +1,41 @@
+<html>
+    <head>
+        <h1>Increase in meat consumption</h1>
+        <a href="index.html">Home</a>
+    </head>
+    
+    <body>
+        <h1>Welcome!</h1>
+        <p>Here you can find increase in meat consumption for each country and meat type.</p>
+    <script>
+        function change_in_comsumption(){
+            fetch("http://127.0.0.1:5000/change_in_meat_consumption")
+            .then(r => r.json())
+            .then(d => show(d))   
+        }
+
+        function show(d){
+            const container = document.getElementById("datatoshow");
+            d.forEach(item => {
+                const div = document.createElement("div");
+                div.innerHTML = `
+                <p>Subject: ${item["SUBJECT"]}<p>
+                <p><strong>Location:</strong> ${item["LOCATION"]}</p>
+                <p><strong>First Value:</strong> ${item["First Value"]}</p>
+                <p><strong>First Year:</strong> ${item["First Year"]}</p>
+                <p><strong>Last Value:</strong> ${item["Last Value"]}</p>
+                <p><strong>Last Year:</strong> ${item["Last Year"]}</p>
+                <p><strong>Increase in Consumption:</strong> ${item["Increase in Consumption"]}</p>
+            `;
+                container.appendChild(div);
+            })
+        }
+
+    </script>
+
+    <button onclick="change_in_comsumption()">Show change in meat consumption</button>
+    <div id="datatoshow"></div>
+
+    </body>
+
+</html>

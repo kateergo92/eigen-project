@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <a href="index.html">Home</a>
+        <a href="meatconsumption.html">Meat consumption increase</a>
+    </head>
+    <body>
+        <h1>Welcome!</h1>
+        <p>Here you can find my first project where I try to build a responsive website using HTML, CSS and JavaScript.</p><br>
+
+        <script>
+            function showrawdata(){
+                fetch("http://127.0.0.1:5000")
+                .then(r => r.json())
+                .then(d => show(d))
+            }
+            
+            function show(d){
+                let firstdiv = document.getElementById("datatoshow");
+                firstdiv.innerHTML = " "
+                for (let i = 0; i < d.length; i++){
+                    let location = d[i].LOCATION;
+                    let subject = d[i].SUBJECT;
+                    let measure = d[i].MEASURE;
+                    let time = d[i].TIME;
+                    let value = d[i].Value;
+                    let p = document.createElement("p")
+                    p.innerText = "Country: " + location + " Meat: " + subject + " Measure: " + measure + " Year: " + time + " Weight: " + value;
+                    firstdiv.appendChild(p);
+                }
+                
+            }
+        </script>
+
+        <button onclick="showrawdata()">Show raw data</button>
+        <div id="datatoshow"></div>
+
+    </body>
+</html>
